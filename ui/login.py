@@ -14,15 +14,15 @@ def get_base64_image(image_path):
 def login_page():
     repo = Repository()
     
-    # Session state for switching between login and signup
+    # Session state for switching between landing, login and signup
     if 'auth_mode' not in st.session_state:
-        st.session_state.auth_mode = 'login'
+        st.session_state.auth_mode = 'landing'
     
-    # Custom Header Removal (already in main but double check)
+    # Custom Header Removal
     st.markdown("""
         <style>
             [data-testid="stHeader"] {visibility: hidden;}
-            .block-container {padding-top: 2rem;}
+            .block-container {padding-top: 1rem;}
         </style>
     """, unsafe_allow_html=True)
 
@@ -30,7 +30,6 @@ def login_page():
     st.markdown('<div class="auth-container">', unsafe_allow_html=True)
     
     # Logo & Hero
-    # Use the logo in the ui directory
     current_dir = os.path.dirname(os.path.abspath(__file__))
     logo_path = os.path.join(current_dir, "logo.png")
     logo_base64 = get_base64_image(logo_path)
@@ -38,7 +37,7 @@ def login_page():
     if logo_base64:
         st.markdown(f'''
             <div class="logo-wrapper">
-                <img src="data:image/png;base64,{logo_base64}" class="logo-img">
+                <img src="data:image/png;base64,{logo_base64}" style="width: 80px; margin-bottom: 2rem;">
                 <h1 class="hero-title">MindLoop</h1>
                 <p class="hero-subtitle">Connect with your digital reflection.</p>
             </div>
@@ -46,70 +45,77 @@ def login_page():
     else:
         st.markdown('''
             <div class="logo-wrapper">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">🧠</div>
+                <div style="font-size: 4rem; margin-bottom: 1rem;">🧠</div>
                 <h1 class="hero-title">MindLoop</h1>
                 <p class="hero-subtitle">Connect with your digital reflection.</p>
             </div>
         ''', unsafe_allow_html=True)
 
-    # Social Login Area
-    if st.session_state.auth_mode == 'login':
-        st.markdown('<h2 style="color: white; font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">Sign in to MindLoop</h2>', unsafe_allow_html=True)
-    else:
-        st.markdown('<h2 style="color: white; font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">Create your account</h2>', unsafe_allow_html=True)
-
-    # Social Buttons (Styled via custom HTML + Streamlit buttons hack or pure HTML)
-    # Using columns for better alignment if needed, but the request was for large buttons like X
-    
-    if st.button("Continue with Google", key="btn_google", use_container_width=True):
-        handle_social_login("Google", repo)
+    # --- LANDING STATE ---
+    if st.session_state.auth_mode == 'landing':
+        st.markdown('<h2 style="color: white; font-size: 2rem; font-weight: 800; margin-bottom: 2.5rem; text-align: center; letter-spacing: -0.04em;">Ça se passe maintenant.</h2>', unsafe_allow_html=True)
         
-    if st.button("Continue with Apple", key="btn_apple", use_container_width=True):
-        handle_social_login("Apple", repo)
+        # Social Buttons
+        if st.button("S'inscrire avec Google", key="landing_google", use_container_width=True):
+            handle_social_login("Google", repo)
+            
+        if st.button("S'inscrire avec Apple", key="landing_apple", use_container_width=True):
+            handle_social_login("Apple", repo)
+            
+        st.markdown('<div class="divider">ou</div>', unsafe_allow_html=True)
         
-    if st.button("Continue with Microsoft", key="btn_ms", use_container_width=True):
-        handle_social_login("Microsoft", repo)
-
-    st.markdown('<div class="divider">or</div>', unsafe_allow_html=True)
-
-    # Credentials Form
-    if st.session_state.auth_mode == 'login':
-        render_login_form(repo)
-    else:
-        render_signup_form(repo)
-
-    # Footer
-    if st.session_state.auth_mode == 'login':
-        st.markdown('''
-            <div class="auth-footer">
-                <a href="#">Forgot password?</a><br><br>
-                <span style="color: #71767b;">Don't have an account? </span>
-            </div>
-        ''', unsafe_allow_html=True)
-        if st.button("Sign up", key="toggle_signup", kind="secondary"):
+        if st.button("Créer un compte", key="go_signup", type="primary", use_container_width=True):
             st.session_state.auth_mode = 'signup'
             st.rerun()
-    else:
-        st.markdown('''
-            <div class="auth-footer">
-                <span style="color: #71767b;">Already have an account? </span>
-            </div>
-        ''', unsafe_allow_html=True)
-        if st.button("Sign in", key="toggle_login", kind="secondary"):
+            
+        st.markdown('<p style="font-size: 0.7rem; color: #71767b; margin-top: 0.5rem;">En vous inscrivant, vous acceptez les Conditions d\'utilisation et la Politique de confidentialité.</p>', unsafe_allow_html=True)
+        
+        st.markdown('<div style="margin-top: 4rem;">', unsafe_allow_html=True)
+        st.markdown('<p style="font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem;">Vous avez déjà un compte ?</p>', unsafe_allow_html=True)
+        if st.button("Se connecter", key="go_login", use_container_width=True):
             st.session_state.auth_mode = 'login'
+            st.rerun()
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    # --- LOGIN STATE ---
+    elif st.session_state.auth_mode == 'login':
+        st.markdown('<h2 style="color: white; font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem; text-align: left;">Connectez-vous à MindLoop</h2>', unsafe_allow_html=True)
+        
+        if st.button("Continuer avec Google", key="login_google", use_container_width=True):
+            handle_social_login("Google", repo)
+            
+        if st.button("Continuer avec Apple", key="login_apple", use_container_width=True):
+            handle_social_login("Apple", repo)
+            
+        st.markdown('<div class="divider">ou</div>', unsafe_allow_html=True)
+        
+        render_login_form(repo)
+        
+        if st.button("Retour", key="back_to_landing_l", kind="secondary"):
+            st.session_state.auth_mode = 'landing'
+            st.rerun()
+
+    # --- SIGNUP STATE ---
+    elif st.session_state.auth_mode == 'signup':
+        st.markdown('<h2 style="color: white; font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem; text-align: left;">Créer votre compte</h2>', unsafe_allow_html=True)
+        render_signup_form(repo)
+        
+        if st.button("Retour", key="back_to_landing_s", kind="secondary"):
+            st.session_state.auth_mode = 'landing'
             st.rerun()
 
     # Security Badge
     st.markdown('''
         <div class="security-badge">
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span>Enterprise-grade encryption active</span>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 1rem;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Chiffrement de niveau entreprise</span>
             </div>
-            <span>[Protected by Private AI Protocol 2.1]</span>
-            <div style="margin-top: 10px; display: flex; gap: 15px;">
-                <a href="#" style="color: #444; text-decoration: none;">Terms of Service</a>
-                <a href="#" style="color: #444; text-decoration: none;">Privacy Policy</a>
+            <span>MindLoop Pro © 2026</span><br>
+            <div style="margin-top: 10px; display: flex; justify-content: center; gap: 20px;">
+                <a href="#">Conditions</a>
+                <a href="#">Confidentialité</a>
+                <a href="#">Cookies</a>
             </div>
         </div>
     ''', unsafe_allow_html=True)

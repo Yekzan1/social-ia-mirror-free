@@ -1,24 +1,32 @@
-/* MindLoop Premium Obsidian Design System */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* MindLoop Premium Obsidian Design System - V5.0 */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;700&display=swap');
 
 :root {
-    --primary-gradient: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
-    --bg-dark: #050505;
-    --card-bg: rgba(15, 15, 15, 0.7);
+    --primary-gradient: linear-gradient(135deg, #8a2be2 0%, #00c2ff 100%);
+    --bg-dark: #020203;
+    --card-bg: rgba(10, 10, 12, 0.7);
     --border-color: rgba(255, 255, 255, 0.08);
-    --text-main: #ffffff;
-    --text-secondary: #888888;
-    --accent-purple: #8a2be2;
-    --accent-glow: 0 0 20px rgba(138, 43, 226, 0.3);
+    --text-main: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-purple: #a855f7;
+    --accent-glow: 0 0 30px rgba(168, 85, 247, 0.25);
 }
 
 .stApp {
     background-color: var(--bg-dark);
     background-image: 
-        radial-gradient(circle at 20% 20%, rgba(110, 69, 226, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(0, 194, 255, 0.05) 0%, transparent 40%);
-    font-family: 'Inter', sans-serif;
+        radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(0, 194, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(10, 10, 12, 1) 0%, transparent 100%);
+    font-family: 'Outfit', 'Inter', sans-serif;
+    color: var(--text-main);
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
 
 /* Hide Streamlit components */
 [data-testid="stHeader"], [data-testid="stFooter"], [data-testid="stToolbar"] {
@@ -28,132 +36,153 @@
 .auth-container {
     max-width: 440px;
     margin: 0 auto;
-    padding: 60px 20px;
-    animation: slideUpFade 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    padding: 80px 20px;
+    animation: slideUpFade 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes slideUpFade {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(40px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .logo-wrapper {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
 }
 
 .hero-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 800;
     background: var(--primary-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 0.5rem;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.06em;
+    filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.3));
 }
 
 .hero-subtitle {
     color: var(--text-secondary);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 400;
+    letter-spacing: -0.01em;
 }
 
 /* Forms and Inputs */
 .stTextInput > div > div > input {
     background-color: rgba(255, 255, 255, 0.03) !important;
     border: 1px solid var(--border-color) !important;
-    border-radius: 12px !important;
+    border-radius: 16px !important;
     color: white !important;
-    padding: 14px !important;
-    transition: all 0.3s ease !important;
+    padding: 16px !important;
+    font-size: 1rem !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .stTextInput > div > div > input:focus {
     border-color: var(--accent-purple) !important;
     box-shadow: var(--accent-glow) !important;
-    background-color: rgba(255, 255, 255, 0.05) !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    transform: translateY(-1px);
 }
 
 /* Premium Buttons */
 div[data-testid="stBaseButton-primary"] button {
-    background: var(--primary-gradient) !important;
+    background: white !important;
+    color: black !important;
     border: none !important;
-    border-radius: 14px !important;
-    color: white !important;
-    height: 52px !important;
-    font-weight: 700 !important;
-    font-size: 1rem !important;
-    box-shadow: 0 4px 15px rgba(110, 69, 226, 0.4) !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    border-radius: 30px !important;
+    height: 54px !important;
+    font-weight: 800 !important;
+    font-size: 1.05rem !important;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
 }
 
 div[data-testid="stBaseButton-primary"] button:hover {
-    transform: translateY(-3px) scale(1.02) !important;
-    box-shadow: 0 8px 25px rgba(110, 69, 226, 0.6) !important;
+    transform: scale(1.02) translateY(-2px) !important;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15) !important;
+    background: #f1f1f1 !important;
 }
 
+/* Social Buttons Hack */
 div[data-testid="stBaseButton-secondary"] button {
     background: rgba(255, 255, 255, 0.05) !important;
     color: white !important;
     border: 1px solid var(--border-color) !important;
-    border-radius: 12px !important;
-    height: 48px !important;
-    transition: all 0.3s ease !important;
+    border-radius: 30px !important;
+    height: 54px !important;
+    font-weight: 600 !important;
+    transition: all 0.4s ease !important;
 }
 
 div[data-testid="stBaseButton-secondary"] button:hover {
     background: rgba(255, 255, 255, 0.1) !important;
-    border-color: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-1px) !important;
 }
 
 /* Cards */
 .post-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 20px;
-    border-radius: 20px;
-    margin-bottom: 16px;
-    backdrop-filter: blur(12px);
-    transition: transform 0.3s ease;
+    padding: 24px;
+    border-radius: 24px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(16px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .post-card:hover {
-    transform: scale(1.01);
-    border-color: rgba(110, 69, 226, 0.3);
+    transform: translateY(-4px);
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .glass-card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
     border: 1px solid var(--border-color);
-    padding: 24px;
-    border-radius: 24px;
-    backdrop-filter: blur(20px);
+    padding: 28px;
+    border-radius: 28px;
+    backdrop-filter: blur(24px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .divider {
     height: 1px;
     background: var(--border-color);
-    margin: 30px 0;
+    margin: 40px 0;
     position: relative;
 }
 
 .divider::after {
-    content: "OR";
+    content: "ou";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: var(--bg-dark);
-    padding: 0 15px;
+    padding: 0 20px;
     color: var(--text-secondary);
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .security-badge {
-    margin-top: 4rem;
+    margin-top: 5rem;
     text-align: center;
     color: var(--text-secondary);
-    font-size: 0.8rem;
-    opacity: 0.6;
+    font-size: 0.85rem;
+    line-height: 1.6;
 }
+
+.security-badge a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.security-badge a:hover {
+    opacity: 0.7;
+}
+
