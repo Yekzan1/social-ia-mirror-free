@@ -62,6 +62,9 @@ def login_page():
         if st.button("S'inscrire avec Apple", key="landing_apple", use_container_width=True):
             handle_social_login("Apple", repo)
             
+        if st.button("S'inscrire avec Microsoft", key="landing_ms", use_container_width=True):
+            handle_social_login("Microsoft", repo)
+            
         st.markdown('<div class="divider">ou</div>', unsafe_allow_html=True)
         
         if st.button("Créer un compte", key="go_signup", type="primary", use_container_width=True):
@@ -87,11 +90,14 @@ def login_page():
         if st.button("Continuer avec Apple", key="login_apple", use_container_width=True):
             handle_social_login("Apple", repo)
             
+        if st.button("Continuer avec Microsoft", key="login_ms", use_container_width=True):
+            handle_social_login("Microsoft", repo)
+            
         st.markdown('<div class="divider">ou</div>', unsafe_allow_html=True)
         
         render_login_form(repo)
         
-        if st.button("Retour", key="back_to_landing_l", kind="secondary"):
+        if st.button("Retour", key="back_to_landing_l", use_container_width=True):
             st.session_state.auth_mode = 'landing'
             st.rerun()
 
