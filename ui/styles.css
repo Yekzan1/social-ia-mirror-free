@@ -1,0 +1,159 @@
+/* MindLoop Premium Obsidian Design System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #6e45e2 0%, #88d3ce 100%);
+    --bg-dark: #050505;
+    --card-bg: rgba(15, 15, 15, 0.7);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-main: #ffffff;
+    --text-secondary: #888888;
+    --accent-purple: #8a2be2;
+    --accent-glow: 0 0 20px rgba(138, 43, 226, 0.3);
+}
+
+.stApp {
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(110, 69, 226, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(0, 194, 255, 0.05) 0%, transparent 40%);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Hide Streamlit components */
+[data-testid="stHeader"], [data-testid="stFooter"], [data-testid="stToolbar"] {
+    display: none !important;
+}
+
+.auth-container {
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    animation: slideUpFade 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.logo-wrapper {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.04em;
+}
+
+.hero-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+/* Forms and Inputs */
+.stTextInput > div > div > input {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    color: white !important;
+    padding: 14px !important;
+    transition: all 0.3s ease !important;
+}
+
+.stTextInput > div > div > input:focus {
+    border-color: var(--accent-purple) !important;
+    box-shadow: var(--accent-glow) !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Premium Buttons */
+div[data-testid="stBaseButton-primary"] button {
+    background: var(--primary-gradient) !important;
+    border: none !important;
+    border-radius: 14px !important;
+    color: white !important;
+    height: 52px !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    box-shadow: 0 4px 15px rgba(110, 69, 226, 0.4) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+div[data-testid="stBaseButton-primary"] button:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 8px 25px rgba(110, 69, 226, 0.6) !important;
+}
+
+div[data-testid="stBaseButton-secondary"] button {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: white !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    height: 48px !important;
+    transition: all 0.3s ease !important;
+}
+
+div[data-testid="stBaseButton-secondary"] button:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Cards */
+.post-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s ease;
+}
+
+.post-card:hover {
+    transform: scale(1.01);
+    border-color: rgba(110, 69, 226, 0.3);
+}
+
+.glass-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid var(--border-color);
+    padding: 24px;
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+}
+
+.divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 30px 0;
+    position: relative;
+}
+
+.divider::after {
+    content: "OR";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-dark);
+    padding: 0 15px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.security-badge {
+    margin-top: 4rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    opacity: 0.6;
+}

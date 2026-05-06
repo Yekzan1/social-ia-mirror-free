@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindLoop - Preview</title>
+    <style>
+        :root {
+            --x-black: #000000;
+            --x-dark-gray: #16181c;
+            --x-blue: #1d9bf0;
+            --x-white: #eff3f4;
+            --x-text-gray: #71767b;
+            --x-border: #333639;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--x-black);
+            color: var(--x-white);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .x-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .x-left {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+        }
+
+        .x-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 60px;
+        }
+
+        .x-content {
+            max-width: 440px;
+            width: 100%;
+        }
+
+        .logo-svg {
+            width: 380px;
+            height: 380px;
+            filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.4));
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.02); }
+        }
+
+        .sentient-badge {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #818cf8;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+        }
+
+        .x-hero-text {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 0 0 3rem 0;
+            letter-spacing: -2px;
+        }
+
+        .x-sub-text {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #cfd9de;
+            text-decoration: none;
+        }
+
+        .btn-white {
+            background: white;
+            color: black;
+        }
+
+        .btn-white:hover {
+            background: #e6e6e6;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--x-blue);
+            border: 1px solid #536471;
+        }
+
+        .x-divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: var(--x-text-gray);
+        }
+
+        .x-divider::before, .x-divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid var(--x-border);
+        }
+
+        .x-divider span { padding: 0 10px; font-size: 0.9rem; }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: var(--x-text-gray);
+            margin-top: 10px;
+        }
+
+        .login-section {
+            margin-top: 4rem;
+        }
+
+        .login-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: var(--x-blue);
+            border: 1px solid var(--x-border);
+            text-align: center;
+        }
+        
+        .btn-login:hover {
+            background: rgba(29, 155, 240, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="x-container">
+        <div class="x-left">
+            <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="logo_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#6366f1" />
+                        <stop offset="100%" stop-color="#a855f7" />
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                </defs>
+                <path d="M50 20C33.4 20 20 33.4 20 50C20 66.6 33.4 80 50 80C66.6 80 80 66.6 80 50" stroke="url(#logo_grad)" stroke-width="6" stroke-linecap="round" filter="url(#glow)"/>
+                <circle cx="50" cy="50" r="8" fill="white" filter="url(#glow)"/>
+            </svg>
+        </div>
+        <div class="x-right">
+            <div class="x-content">
+                <div class="sentient-badge">SentientLoop AI Engine Active</div>
+                <h1 class="x-hero-text">Ça se passe maintenant</h1>
+                <h2 class="x-sub-text">Rejoignez MindLoop dès aujourd'hui.</h2>
+                
+                <div class="btn btn-white">S'inscrire avec Google</div>
+                <div class="btn btn-white">S'inscrire avec GitHub</div>
+                <div class="btn btn-white">S'inscrire avec Microsoft</div>
+                <div class="btn btn-white">S'inscrire avec Apple</div>
+
+                <div class="x-divider"><span>ou</span></div>
+                
+                <div class="btn btn-outline" style="background: var(--x-blue); color: white; border: none;">Créer un compte</div>
+                
+                <div class="footer-text">
+                    En vous inscrivant, vous acceptez les Conditions d'utilisation et la Politique de confidentialité.
+                </div>
+
+                <div class="login-section">
+                    <h3>Vous avez déjà un compte ?</h3>
+                    <div class="btn btn-login">Se connecter</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

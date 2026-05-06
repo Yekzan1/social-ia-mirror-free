@@ -1,0 +1,8 @@
+streamlit
+requests
+bcrypt
+Pillow
+plotly
+supabase
+python-dotenv
+validators
